@@ -44,39 +44,29 @@ public class WeatherFragment extends Fragment{
 //    }
 
 
-    @Override
-    public void onAttach(Activity activity) {
-        this.activity = activity;
-        super.onAttach(activity);
-    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.weather_layout,container,false);
-        weatherInfoLayout = (LinearLayout) view.findViewById(R.id.weather_info_layout);
-        cityNameText = (TextView) view.findViewById(R.id.city_name);
-        publishText = (TextView) view.findViewById(R.id.publish_text);
-        weatherDespText = (TextView) view.findViewById(R.id.weather_desp);
-        temp1Text = (TextView) view.findViewById(R.id.temp1);
-        temp2Text = (TextView) view.findViewById(R.id.temp2);
-        currentDateText = (TextView) view.findViewById(R.id.current_date);
+//        weatherInfoLayout = (LinearLayout) view.findViewById(R.id.weather_info_layout);
+//        cityNameText = (TextView) view.findViewById(R.id.city_name);
+//        publishText = (TextView) view.findViewById(R.id.publish_text);
+//        weatherDespText = (TextView) view.findViewById(R.id.weather_desp);
+//        temp1Text = (TextView) view.findViewById(R.id.temp1);
+//        temp2Text = (TextView) view.findViewById(R.id.temp2);
+//        currentDateText = (TextView) view.findViewById(R.id.current_date);
+//
+//            publishText.setText("正在同步中...");
 
-        Bundle bundle = getArguments();
-//        String countyCode = activity.getIntent().getStringExtra("county_code");
-        String countyCode = bundle.getString("county_code");
-        if (!TextUtils.isEmpty(countyCode)) {
-            publishText.setText("正在同步中...");
-            weatherInfoLayout.setVisibility(View.INVISIBLE);
-            cityNameText.setVisibility(View.INVISIBLE);
-            Intent intent = new Intent(activity, AutoUpdateService.class);
-            activity.startService(intent);
-            queryWeatherCode(countyCode);
-        } else {
-            showWeather();
-        }
+
 
         return view;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     private void queryWeatherCode(String countyCode) {
