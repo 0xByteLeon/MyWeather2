@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Log.e("isQuerySucceed","Values:"+Utility.isQuerySucceed());
+        Log.e("isQuerySucceed", "Values:" + Utility.isQuerySucceed());
         myWeatherDB = MyWeatherDB.getInstance(this);
         //  检测数据库中是否有数据
         if (myWeatherDB.loadProvinces().size() <= 0) {
@@ -189,10 +189,10 @@ public class MainActivity extends AppCompatActivity
             protected void onProgressUpdate(Integer... values) {
                 closeProgressDialog();
                 if (4 == Utility.isQuerySucceed()) {
-                    Toast.makeText(MainActivity.this,"加载失败，请检查网络是否连接",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "加载失败，请检查网络是否连接", Toast.LENGTH_SHORT).show();
                 }
                 Utility.setQuerySucceed(1);
-                getFragmentManager().beginTransaction().add(R.id.fragment_container,new ChooseAeraFragment()).commit();
+                getFragmentManager().beginTransaction().add(R.id.fragment_container, new ChooseAeraFragment()).commit();
                 super.onProgressUpdate(values);
             }
         }.execute();
@@ -205,12 +205,23 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_weather) {
+            if (getFragmentManager().findFragmentById(R.layout.weather_layout) != null) {
+                getFragmentManager().beginTransaction().hide(getFragmentManager().findFragmentById(R.layout.choose_aera_fragment)).commit();
+                getFragmentManager().beginTransaction().show(getFragmentManager().findFragmentById(R.layout.weather_layout)).commit();
+            } else {
+                getFragmentManager().beginTransaction().add(R.id.fragment_container, new WeatherFragment()).commit();
+            }
 
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container,new WeatherFragment()).commit();
 
         } else if (id == R.id.nav_place) {
+            if (getFragmentManager().findFragmentById(R.layout.choose_aera_fragment) != null) {
+                getFragmentManager().beginTransaction().hide(getFragmentManager().findFragmentById(R.layout.weather_layout)).commit();
+                getFragmentManager().beginTransaction().show(getFragmentManager().findFragmentById(R.layout.choose_aera_fragment)).commit();
+            } else {
+                getFragmentManager().beginTransaction().add(R.id.fragment_container, new ChooseAeraFragment()).commit();
+            }
 
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container,new ChooseAeraFragment()).commit();
+            getFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChooseAeraFragment()).commit();
 
         } else if (id == R.id.nav_slideshow) {
 

@@ -49,25 +49,21 @@ public class WeatherFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.weather_layout,container,false);
-//        weatherInfoLayout = (LinearLayout) view.findViewById(R.id.weather_info_layout);
-//        cityNameText = (TextView) view.findViewById(R.id.city_name);
-//        publishText = (TextView) view.findViewById(R.id.publish_text);
-//        weatherDespText = (TextView) view.findViewById(R.id.weather_desp);
-//        temp1Text = (TextView) view.findViewById(R.id.temp1);
-//        temp2Text = (TextView) view.findViewById(R.id.temp2);
-//        currentDateText = (TextView) view.findViewById(R.id.current_date);
-//
-//            publishText.setText("正在同步中...");
+        weatherInfoLayout = (LinearLayout) view.findViewById(R.id.weather_info_layout);
+        cityNameText = (TextView) view.findViewById(R.id.city_name);
+        publishText = (TextView) view.findViewById(R.id.publish_text);
+        weatherDespText = (TextView) view.findViewById(R.id.weather_desp);
+        temp1Text = (TextView) view.findViewById(R.id.temp1);
+        temp2Text = (TextView) view.findViewById(R.id.temp2);
+        currentDateText = (TextView) view.findViewById(R.id.current_date);
+
+        publishText.setText("正在同步中...");
 
 
 
         return view;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     private void queryWeatherCode(String countyCode) {
         String address = "http://www.weather.com.cn/data/list3/city" + countyCode + ".xml";

@@ -126,6 +126,7 @@ public class ChooseAeraFragment extends Fragment implements MyClickListener {
 
                 closeProgressDialog();
                 adapter.notifyDataSetChanged();
+                recyclerView.smoothScrollToPosition(0);
                 Utility.setQuerySucceed(1);
             } else {
                 closeProgressDialog();
@@ -148,6 +149,7 @@ public class ChooseAeraFragment extends Fragment implements MyClickListener {
                 Log.e("onMyItemClick", "CitiesList" + aeraList);
                 closeProgressDialog();
                 adapter.notifyDataSetChanged();
+                recyclerView.smoothScrollToPosition(0);
             } else {
                 Utility.queryFromServer(chooseAera.getProvinceCode(), "city", chooseAera.getId());
                 new RefreshRecyclerView(chooseAera).execute();
@@ -165,6 +167,7 @@ public class ChooseAeraFragment extends Fragment implements MyClickListener {
                 Log.e("onMyItemClick", "CountiesList" + aeraList);
                 closeProgressDialog();
                 adapter.notifyDataSetChanged();
+                recyclerView.smoothScrollToPosition(0);
             } else {
                 Utility.queryFromServer(chooseAera.getCityCode(), "county", chooseAera.getId());
                 new RefreshRecyclerView(chooseAera).execute();
